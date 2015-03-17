@@ -33,13 +33,13 @@ install:
 - export PATH=$PATH:$HOME/pandoc/
 # - pandoc --version
 - ./travis-tool.sh bootstrap
-# - ./travis-tool.sh r_binary_install igraph
-# - ./travis-tool.sh r_binary_install magic
-# - ./travis-tool.sh r_binary_install moments
-# - ./travis-tool.sh r_binary_install pixmap
-# - ./travis-tool.sh r_binary_install psych
-# - ./travis-tool.sh r_binary_install signal
-# - ./travis-tool.sh r_install visreg
+ - ./travis-tool.sh r_binary_install igraph
+ - ./travis-tool.sh r_binary_install magic
+ - ./travis-tool.sh r_binary_install moments
+ - ./travis-tool.sh r_binary_install pixmap
+ - ./travis-tool.sh r_binary_install psych
+ - ./travis-tool.sh r_binary_install signal
+ - ./travis-tool.sh r_install visreg
 - ./travis-tool.sh r_binary_install Rcpp
 - ./travis-tool.sh r_binary_install knitr
 - ./travis-tool.sh r_install rmarkdown
