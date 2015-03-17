@@ -42,8 +42,8 @@ install:
 #- ./travis-tool.sh r_binary_install signal
 #- ./travis-tool.sh r_install visreg
 - ./travis-tool.sh r_binary_install Rcpp
-#- ./travis-tool.sh r_binary_install knitr
-#- ./travis-tool.sh r_install rmarkdown
+- ./travis-tool.sh r_binary_install knitr
+- ./travis-tool.sh r_install rmarkdown
 - ./travis-tool.sh r_install magrittr
 - cd ${basedir}
 
