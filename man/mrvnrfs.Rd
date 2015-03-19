@@ -8,8 +8,7 @@ mrvnrfs(y, x, labelmask, rad = NA, nsamples = 1, ntrees = 500,
   multiResSchedule = c(4, 2, 1), asFactors = TRUE)
 }
 \arguments{
-\item{y}{list of training label images, can be a factor or numeric vector
-this can also be a regular old vector}
+\item{y}{list of training labels. either an image or numeric value}
 
 \item{x}{a list of lists where each list contains feature images}
 
@@ -39,25 +38,40 @@ to build a random forest segmentation model from an image population
 \examples{
 mask<-makeImage( c(10,10), 0 )
 mask[ 3:6, 3:6 ]<-1
-mask[ 5, 5 ]<-2
+mask[ 5, 5:6]<-2
 ilist<-list()
 lablist<-list()
 inds<-1:50
 scl<-0.33 # a noise parameter
+for ( predtype in c("label","scalar") )
+{
 for ( i in inds ) {
   img<-antsImageClone(mask)
   imgb<-antsImageClone(mask)
-  img[ 3:6, 3:6 ]<-rnorm(16)*scl+(i \%\% 2)+scl*mean(rnorm(1))
-  imgb[ 3:6, 3:6 ]<-rnorm(16)*scl+(i \%\% 2)+scl*mean(rnorm(1))
   limg<-antsImageClone(mask)
-  limg[ 3:6, 3:6 ]<-(i \%\% 2)+1  # the label image is constant
-  ilist[[i]]<-list(img,imgb)  # two features
-  lablist[[i]]<-limg
-}
-rfm<-mrvnrfs( lablist , ilist, mask, rad=c(0,0), multiResSchedule=1 )
-rfmresult<-mrvnrfs.predict( rfm$rflist ,
-   list(ilist[[2]]), mask, rad=c(0,0),
-   multiResSchedule=1 )
+  if ( predtype == "label") {  # 4 class prediction
+    img[ 3:6, 3:6 ]<-rnorm(16)*scl+(i \%\% 4)+scl*mean(rnorm(1))
+    imgb[ 3:6, 3:6 ]<-rnorm(16)*scl+(i \%\% 4)+scl*mean(rnorm(1))
+    limg[ 3:6, 3:6 ]<-(i \%\% 4)+1  # the label image is constant
+    }
+    if ( predtype == "scalar") {
+      img[ 3:6, 3:6 ]<-rnorm(16,1)*scl*(i)+scl*mean(rnorm(1))
+      imgb[ 3:6, 3:6 ]<-rnorm(16,1)*scl*(i)+scl*mean(rnorm(1))
+      limg<-i^2.0  # a real outcome
+      }
+    ilist[[i]]<-list(img,imgb)  # two features
+    lablist[[i]]<-limg
+  }
+rad<-rep( 1, 2 )
+mr <- c(1.5,1)
+rfm<-mrvnrfs( lablist , ilist, mask, rad=rad, multiResSchedule=mr,
+     asFactors = (  predtype == "label" ) )
+rfmresult<-mrvnrfs.predict( rfm$rflist,
+     ilist, mask, rad=rad, asFactors=(  predtype == "label" ),
+     multiResSchedule=mr )
+if ( predtype == "scalar" )
+  print( cor( unlist(lablist) , rfmresult$seg ) )
+} # end predtype loop
 }
 \author{
 Avants BB, Tustison NJ
