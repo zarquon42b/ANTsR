@@ -8,11 +8,11 @@ extdata/
 src/*.o
 src/*.so
 src/symbols.rds
-# things to ignore in ANTsR/src/ANTsR
-src/itks/
-src/ants/
-src/itkb/
 src/antb/
-src/itki/
 inst/doc
 vignettes/*pdf
+R/convolveImage.R
+R/invariantImageSimilarity.R
+man/convolveImage.Rd
+man/invariantImageSimilarity.Rd
+src/invariantImageSimilarity.cpp
