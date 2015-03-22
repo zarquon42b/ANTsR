@@ -13,7 +13,7 @@ set(CMAKE_MODULE_PATH
 set (CMAKE_INCLUDE_DIRECTORIES_BEFORE ON)
 #-----------------------------------------------------------------------------
 # Version information
-include(Version.cmake)
+# include(Version.cmake)
 
 set(${PROJECT_NAME}_VERSION "${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}")
 if(DEFINED ${PROJECT_NAME}_VERSION_PATCH)
