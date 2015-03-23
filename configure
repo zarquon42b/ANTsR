@@ -7,7 +7,7 @@ ITKDIR=`${R_DIR}Rscript -e 'a<-ITKR:::itkDir(); cat(a)'`
 # get a version of cmake
 cmaker=`which cmake`
 if [[ ! -x $cmaker ]] ; then # try r version
-  cmaker=`${R_HOME}/bin/Rscript -e 'cmaker::cmake()'`
+  cmaker=`${R_HOME}/bin/Rscript -e 'a<-cmaker::cmake()'`
 fi
 JTHREADS=2
 if [[ `uname` -eq Darwin ]] ; then
@@ -18,7 +18,17 @@ if [[ $TRAVIS -eq true ]] ; then
   JTHREADS=2
 fi
 cd ./src
+antsgit=https://github.com/stnava/ANTs.git
+antstag=e47cec4ee8ad184e2931d24b0e4ff044a48d85cc
 if [[ ! -s antb/Makefile  ]] ; then
+  if [[ ! -s ants/CMakeLists.txt  ]] ; then
+    git clone $antsgit ants
+  fi
+  cd ants
+  if [[ -d .git ]]; then
+    git checkout master;  git pull;  git checkout $antstag
+  fi
+  cd ../
   mkdir antb
   cd ./antb
   ${cmaker} -DITK_DIR:PATH=${ITKDIR} \

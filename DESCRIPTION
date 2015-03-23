@@ -16,7 +16,6 @@ Suggests:
     BGLR,
     caret,
     cluster,
-    cmaker,
     d3Network,
     DMwR,
     e1071,
@@ -46,7 +45,7 @@ Suggests:
     visreg,
     wmtsa
 LinkingTo: Rcpp, ITKR
-SystemRequirements: clang (recommended)
+SystemRequirements: cmake, git, clang (recommended)
 NeedsCompilation: yes
 OS_type: unix
 Additional_repositories: https://github.com/InsightSoftwareConsortium/ITK.git, https://github.com/stnava/ANTs.git
