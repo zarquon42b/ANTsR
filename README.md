@@ -307,3 +307,13 @@ ANTsR::antsRegistration( "-d", "2", "-m", "mi[r16slice.nii.gz,r64slice.nii.gz,1,
 [Sparse regression with manifold smoothness constraints](http://www.ncbi.nlm.nih.gov/pubmed/24683960) function `sparseRegression`
 
 [Prior-based eigenanatomy](http://www.ncbi.nlm.nih.gov/pubmed/24852460) function `sparseDecom`
+
+## Difference between ANTs version and ANTsR
+
+The core ANTs commit, on which much of ANTsR functionality is based, is available via `antsCommit()`.  The difference between the version we distribute here and the core ANTs is:
+
+* we do not distribute TestData in ANTsR
+
+* we change the files `ProjectSourceVersion.cmake` and `Examples/ANTsVersion.cxx` such that they are independent of `git`
+
+The underlying version of `ITK` is determined by the `ITKR` dependency.
