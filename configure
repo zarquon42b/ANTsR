@@ -1,12 +1,9 @@
 #!/bin/bash
 CXX_STD=CXX11
-RCPP_INCLUDE_DIR=`${R_DIR}Rscript -e 'Rcpp:::CxxFlags()'`
-RCPP_LIB_DIR=`${R_DIR}Rscript -e 'Rcpp:::LdFlags()'`
-R_INCLUDE_DIR=`${R_DIR}R CMD config --cppflags`
-R_LIB_DIR=`${R_DIR}R CMD config --ldflags`
 ITKRCMAKE=`${R_DIR}Rscript -e 'a<-ITKR:::itkIncludes(); cat(a)'`
 ITKRLIB=`${R_DIR}Rscript -e 'a<-ITKR:::itkLibs(); cat(a)'`
 compflags=`${R_DIR}Rscript -e 'a<-ITKR:::itkCompileFlags(); cat(a)'`
+ITKDIR=`${R_DIR}Rscript -e 'a<-ITKR:::itkDir(); cat(a)'`
 # get a version of cmake
 cmaker=`which cmake`
 if [[ ! -x $cmaker ]] ; then # try r version
@@ -24,7 +21,7 @@ cd ./src
 if [[ ! -s antb/Makefile  ]] ; then
   mkdir antb
   cd ./antb
-  ${cmaker} -DITK_DIR:PATH=${ITKRCMAKE} \
+  ${cmaker} -DITK_DIR:PATH=${ITKDIR} \
     -DCMAKE_C_FLAGS="${CMAKE_C_FLAGS} ${compflags} -DNDEBUG  "\
     -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} ${compflags} -DNDEBUG  "\
     -DBUILD_SHARED_LIBS=OFF \

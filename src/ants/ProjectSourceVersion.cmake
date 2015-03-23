@@ -30,6 +30,17 @@
 include(GetGitRevisionDescription)
 
 get_git_head_revision(GIT_REFVAR _GIT_VERSION_HASH)
+set(CMAKE_MATCH_1      X)
+set(CMAKE_MATCH_2      X)
+set(CMAKE_MATCH_3      X)
+set(CMAKE_MATCH_4      X)
+set(CMAKE_MATCH_5      X)
+set(CMAKE_MATCH_6      X)
+set(CMAKE_MATCH_7      X)
+set(CMAKE_MATCH_8      X)
+set(CMAKE_MATCH_9      X)
+set(_GIT_VERSION_HASH  X)
+
 
 # if there is not git directory we should be in a distributed package
 # which should contain this additional cmake file with the
