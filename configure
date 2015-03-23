@@ -30,8 +30,6 @@ if [[ ! -s antb/Makefile  ]] ; then
     -DUSE_SYSTEM_ITK=OFF \
     -DBUILD_TESTING=OFF \
     -DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}"  ../ants
-    # dont call make here ... this should be done elsewere
-    # make -j $JTHREADS # | grep -v "Installing" | grep -v "Looking for"
   cd ../
 #  for x in invariantImageSimilarity.cpp ../R/invariantImageSimilarity.R ../R/convolveImage.R ../man/convolveImage.Rd ../man/invariantImageSimilarity.Rd ; do
 #    if [[ -s $x ]] ; then  rm $x; fi
