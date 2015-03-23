@@ -40,15 +40,15 @@ namespace ANTs
 {
   unsigned int Version::MajorVersion()
     {
-    return ANTS_VERSION_MAJOR;
+    return 2;
     }
   unsigned int Version::MinorVersion()
     {
-    return ANTS_VERSION_MINOR;
+    return 1;
     }
   unsigned int Version::PatchVersion()
     {
-    return ANTS_VERSION_PATCH;
+    return 0;
     }
   unsigned int Version::TweakVersion()
     {
