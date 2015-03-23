@@ -9,29 +9,28 @@ cmaker=`which cmake`
 if [[ ! -x $cmaker ]] ; then # try r version
   cmaker=`${R_HOME}/bin/Rscript -e 'a<-cmaker::cmake()'`
 fi
-JTHREADS=2
 if [[ `uname` -eq Darwin ]] ; then
   CMAKE_BUILD_TYPE=Release
 fi
 if [[ $TRAVIS -eq true ]] ; then
   CMAKE_BUILD_TYPE=Release
-  JTHREADS=2
 fi
 cd ./src
 antsgit=https://github.com/stnava/ANTs.git
 antstag=e47cec4ee8ad184e2931d24b0e4ff044a48d85cc
-if [[ ! -s antb/Makefile  ]] ; then
-  if [[ ! -s ants/CMakeLists.txt  ]] ; then
+if [[ ! -s ants/CMakeLists.txt  ]] ; then
     git clone $antsgit ants
-  fi
-  cd ants
-  if [[ -d .git ]]; then
+fi
+cd ants
+if [[ -d .git ]]; then
     git checkout master;  git pull;  git checkout $antstag
-  fi
-  cd ../
+fi
+cd ../
+if [[ ! -d antb ]] ; then
   mkdir antb
-  cd ./antb
-  ${cmaker} -DITK_DIR:PATH=${ITKDIR} \
+fi
+cd ./antb
+${cmaker} -DITK_DIR:PATH=${ITKDIR} \
     -DCMAKE_C_FLAGS="${CMAKE_C_FLAGS} ${compflags} -DNDEBUG  "\
     -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} ${compflags} -DNDEBUG  "\
     -DBUILD_SHARED_LIBS=OFF \
@@ -44,4 +43,3 @@ if [[ ! -s antb/Makefile  ]] ; then
 #  for x in invariantImageSimilarity.cpp ../R/invariantImageSimilarity.R ../R/convolveImage.R ../man/convolveImage.Rd ../man/invariantImageSimilarity.Rd ; do
 #    if [[ -s $x ]] ; then  rm $x; fi
 #  done
-fi
