@@ -51,6 +51,7 @@ script:
   - source ~/.R/Makevars
   - export CXX=clang++
   - export CC=clang
+  - export MAKE='make -j2'
   - cd ..
   - travis_wait 100 R CMD build ANTsR --no-build-vignettes --no-manual
   - PKG_FILE_NAME=$(ls -1t *.tar.gz | head -n 1)
