@@ -3,7 +3,7 @@
 # use c as catch-all language
 language: c
 compiler:
-  - gcc
+  - clang
 sudo: required
 dist: trusty
 env:
@@ -35,10 +35,10 @@ before_install:
 
 install:
   - mkdir -p ~/.R
-  - export CC=gcc
-  - export CXX=gcc++
-  - echo "CC=gcc" >  ~/.R/Makevars
-  - echo "CXX=gcc++" >> ~/.R/Makevars
+  - export CC=clang
+  - export CXX=clang++
+  - echo "CC=clang" >  ~/.R/Makevars
+  - echo "CXX=clang++" >> ~/.R/Makevars
   - source ~/.R/Makevars
   - echo 'options(repos = "http://cran.rstudio.com")' > .Rprofile
   - echo '.travis.yml' > .Rbuildignore
@@ -49,8 +49,8 @@ install:
 # Build and check package
 script:
   - source ~/.R/Makevars
-  - export CXX=gcc++
-  - export CC=gcc
+  - export CXX=clang++
+  - export CC=clang
   - export MAKE='make -j2'
   - cd ..
   - travis_wait 100 R CMD build ANTsR --no-build-vignettes --no-manual
