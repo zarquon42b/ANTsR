@@ -76,7 +76,8 @@ install:
   - Rscript -e 'if(!"Rvcg" %in% rownames(installed.packages())) { install.packages("Rvcg", dependencies = TRUE) }'
   - export LD_LIB_ORIG=$LD_LIBRARY_PATH
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`octave-config -p OCTLIBDIR`
-  - Rscript -e 'if (!"RcppOctave" %in% rownames(installed.packages())) {install.packages("http://cran.r-project.org/src/contrib/Archive/RcppOctave/RcppOctave_0.14.5.tar.gz",repos=NULL,type="source")} ' 
+ # - Rscript -e 'if (!"RcppOctave" %in% rownames(installed.packages())) {install.packages("http://cran.r-project.org/src/contrib/Archive/RcppOctave/RcppOctave_0.14.5.tar.gz",repos=NULL,type="source")} ' 
+  - Rscript -e ' {install.packages("http://cran.r-project.org/src/contrib/Archive/RcppOctave/RcppOctave_0.14.5.tar.gz",repos=NULL,type="source")} '
   - export LD_LIBRARY_PATH=$LD_LIB_ORIG
 #  - Rscript -e 'if(!"devtools" %in% rownames(installed.packages())) { install.packages("devtools", dependencies = TRUE) }'
 #  - Rscript -e 'if(!"covr" %in% rownames(installed.packages())) { install.packages("covr", dependencies = TRUE) }'
@@ -85,7 +86,6 @@ install:
   - cd ~/
   - wget https://github.com/stnava/ITKR/releases/download/v0.0.0/ITKR_0.0_R_x86_64-pc-linux-gnu.tar.gz
   - R CMD INSTALL --library=~/Rlib ITKR_0.0_R_x86_64-pc-linux-gnu.tar.gz
-  
   - cd ${basedir}
 
 # Build and check package
