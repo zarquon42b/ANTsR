@@ -72,6 +72,8 @@ install:
   - Rscript -e 'if(!"magrittr" %in% rownames(installed.packages())) { install.packages("magrittr", dependencies = TRUE) }'
   - Rscript -e 'if(!"testthat" %in% rownames(installed.packages())) { install.packages("testthat", dependencies = TRUE) }'
   - Rscript -e 'if(!"randomForest" %in% rownames(installed.packages())) { install.packages("randomForest", dependencies = TRUE) }'
+  - Rscript -e 'if(!"Morpho" %in% rownames(installed.packages())) { install.packages("Morpho", dependencies = TRUE) }'
+  - Rscript -e 'if(!"Rvcg" %in% rownames(installed.packages())) { install.packages("Rvcg", dependencies = TRUE) }'
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`octave-config -p OCTLIBDIR`
   - Rscript -e 'if (!"RcppOctave" %in% rownames(installed.packages())) {install.packages("http://cran.r-project.org/src/contrib/Archive/RcppOctave/RcppOctave_0.14.5.tar.gz",repos=NULL,type="source")} ' 
 #  - Rscript -e 'if(!"devtools" %in% rownames(installed.packages())) { install.packages("devtools", dependencies = TRUE) }'
