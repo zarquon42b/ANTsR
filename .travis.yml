@@ -54,6 +54,7 @@ install:
   - export CXX=clang++
   - echo "CC=clang" >  ~/.R/Makevars
   - echo "CXX=clang++" >> ~/.R/Makevars
+  - echo "SHLIB_OPENMP_CXXFLAGS=" >> ~/.R/Makevars
   - source ~/.R/Makevars
   - mkdir -p ~/Rlib
   - echo 'R_LIBS=~/Rlib' > .Renviron
@@ -99,16 +100,16 @@ after_success:
 
 after_failure:
 #  - ./travis-tool.sh dump_logs
-  - cat /home/travis/build/stnava/ANTsR.Rcheck/00install.out
-  - cat /home/travis/build/stnava/ANTsR.Rcheck/00check.log
+  - cat /home/travis/build/zarquon42b/ANTsR.Rcheck/00install.out
+  - cat /home/travis/build/zarquon42b/ANTsR.Rcheck/00check.log
 
 # send e-mails if stuff changes
 notifications:
   email:
     recipients:
-    - stnava@gmail.com
-    - arman.eshaghi@gmail.com
-    - jeff.duda@gmail.com
+    - zarquon42@gmail.com
+    #- arman.eshaghi@gmail.com
+    #- jeff.duda@gmail.com
     on_success: change
     on_failure: always
 
