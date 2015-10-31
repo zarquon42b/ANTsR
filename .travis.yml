@@ -92,7 +92,7 @@ install:
   # - Rscript -e 'if (!"RcppOctave" %in% rownames(installed.packages())) {install.packages("http://cran.r-project.org/src/contrib/Archive/RcppOctave/RcppOctave_0.14.5.tar.gz",repos=NULL,type="source")} '  
   - Rscript -e ' {install.packages("http://cran.r-project.org/src/contrib/Archive/RcppOctave/RcppOctave_0.14.5.tar.gz",repos=NULL,type="source")} ' 
   - Rscript -e 'require(RcppOctave)'
-  - export LD_LIBRARY_PATH=$LD_LIB_ORIG 
+#  - export LD_LIBRARY_PATH=$LD_LIB_ORIG 
   - cd ${basedir}
   - Rscript -e 'require(RcppOctave)'
 
